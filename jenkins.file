@@ -3,47 +3,41 @@ pipeline
     agent any
     stages
     {
-        stage('ContinuousDownload')
+        stage ('continous download')
         {
             steps
             {
-                git 'https://github.com/ankitkhade31/maven.git'
+                git 'https://github.com/intelliqittrainings/maven.git'
             }
         }
-        stage('ContinuousBuild')
+        stage ('continous build')
         {
             steps
             {
                 sh 'mvn package'
             }
         }
-        stage('ContinuousDeployment')
+        stage ('continous deployment')
         {
             steps
             {
-                deploy adapters: [tomcat9(credentialsId: '8cc7d40a-bab0-438d-8dc2-f0d886815228', path: '', url: 'http://172.31.16.84:8080')], contextPath: 'test1', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: '01affd61-a62c-4293-bae9-75461ce60639', path: '', url: 'http://172.31.6.209:8080')], contextPath: 'testankit', war: '**/*.war'
             }
         }
-        stage('ContinuousTesting')
+        stage ('continous test')
         {
             steps
             {
                 git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
-                sh 'java -jar /home/ubuntu/.jenkins/workspace/DeclarativePipeline/testing.jar'
+                sh 'java -jar /var/lib/jenkins/workspace/Declarative?pipeline/testing.jar'
             }
         }
-        stage('ContinuosuDelivery')
+        stage ('continous delivery')
         {
             steps
             {
-              input message: 'Waiting for Approval from the DM!', submitter: 'srinivas'
-              deploy adapters: [tomcat9(credentialsId: '8cc7d40a-bab0-438d-8dc2-f0d886815228', path: '', url: 'http://172.31.29.58:8080')], contextPath: 'prod1', war: '**/*.war'  
+                deploy adapters: [tomcat9(credentialsId: '01affd61-a62c-4293-bae9-75461ce60639', path: '', url: 'http://172.31.3.23:8080')], contextPath: 'prodankit', war: '**/*.war'
             }
         }
-        
-        
-        
     }
-
- }
-
+}
