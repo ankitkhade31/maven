@@ -36,7 +36,7 @@ pipeline
         {
             steps
             {
-                deploy adapters: [tomcat9(credentialsId: '01affd61-a62c-4293-bae9-75461ce60639', path: '', url: 'http://172.31.3.23:8080')], contextPath: 'prodankit', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: '01affd61-a62c-4293-bae9-75461ce60639', path: '', url: 'http://172.31.3.23:8080')], contextPath: 'prod12', war: '**/*.war'
             }
         }
     }
